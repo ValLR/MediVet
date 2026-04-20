@@ -1,0 +1,16 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: medivet-db-container
+    restart: always
+    environment:
+      MYSQL_DATABASE: medivet_db
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/Dump20260420.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
