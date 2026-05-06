@@ -7,6 +7,7 @@ import UserLayout from './components/layouts/UserLayout';
 import DashboardAdmin from './views/DashboardAdmin';
 import DashboardUser from './views/DashboardUser';
 import PatientRegistration from './views/PatientRegistration';
+import ScheduleAppointment from './views/ScheduleAppointment';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         {/* Rutas de Administrador / Veterinario */}
         <Route path="/dashboard-admin" element={<AdminLayout />}>
           <Route index element={<DashboardAdmin />} />
-          <Route path="agenda" element={<div>Agenda (Calendario)</div>} />
+          <Route path="agenda" element={<ScheduleAppointment />} />
           <Route path="pacientes" element={<PatientRegistration />} />
           <Route path="historial" element={<div>Historial Atenciones</div>} />
         </Route>
@@ -26,7 +27,7 @@ function App() {
         {/* Rutas de Dueño (Usuario) */}
         <Route path="/dashboard-user" element={<UserLayout />}>
           <Route index element={<DashboardUser />} />
-          <Route path="agendar" element={<div>Agendar Cita</div>} />
+          <Route path="agendar" element={<ScheduleAppointment />} />
           <Route path="recetas" element={<div>Mis Recetas</div>} />
         </Route>
       </Routes>

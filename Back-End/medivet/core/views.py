@@ -21,6 +21,8 @@ class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
     permission_classes = [permissions.IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['rol']
 
 class DuenoViewSet(viewsets.ModelViewSet):
     queryset = Dueno.objects.all()
