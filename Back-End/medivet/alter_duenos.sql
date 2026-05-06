@@ -1,0 +1,2 @@
+ALTER TABLE duenos ADD COLUMN usuario_id INT DEFAULT NULL;
+ALTER TABLE duenos ADD CONSTRAINT fk_dueno_usuario FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE;

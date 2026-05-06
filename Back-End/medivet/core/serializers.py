@@ -1,5 +1,23 @@
 from rest_framework import serializers
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .models import Usuario, Dueno, Paciente, Cita, FichaClinica, Receta
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        # Añadir claims personalizados
+        token['rol'] = user.rol
+        token['nombre_completo'] = f"{user.first_name} {user.last_name}".strip() or user.username
+        return token
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        # Añadir campos extra a la respuesta JSON
+        data['rol'] = self.user.rol
+        data['nombre_completo'] = f"{self.user.first_name} {self.user.last_name}".strip() or self.user.username
+        data['user_id'] = self.user.id
+        return data
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,10 +1,15 @@
 from rest_framework import viewsets, permissions, filters
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import Usuario, Dueno, Paciente, Cita, FichaClinica, Receta
 from .serializers import (
     UsuarioSerializer, DuenoSerializer, PacienteSerializer, 
-    CitaSerializer, FichaClinicaSerializer, RecetaSerializer
+    CitaSerializer, FichaClinicaSerializer, RecetaSerializer,
+    CustomTokenObtainPairSerializer
 )
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
 
 class IsVeterinarioOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):

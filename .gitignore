@@ -24,3 +24,19 @@ dist-ssr
 *.sln
 *.sw?
 *.pyc
+
+# Entornos virtuales (el nombre de tu carpeta específica y genéricos)
+venv_win/
+venv/
+env/
+.env/
+
+# Archivos compilados de Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribución / Paquetes
+dist/
+build/
+*.egg-info/
