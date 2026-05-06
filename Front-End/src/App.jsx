@@ -6,6 +6,7 @@ import AdminLayout from './components/layouts/AdminLayout';
 import UserLayout from './components/layouts/UserLayout';
 import DashboardAdmin from './views/DashboardAdmin';
 import DashboardUser from './views/DashboardUser';
+import PatientRegistration from './views/PatientRegistration';
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Route path="/dashboard-admin" element={<AdminLayout />}>
           <Route index element={<DashboardAdmin />} />
           <Route path="agenda" element={<div>Agenda (Calendario)</div>} />
-          <Route path="pacientes" element={<div>Lista de Pacientes</div>} />
+          <Route path="pacientes" element={<PatientRegistration />} />
           <Route path="historial" element={<div>Historial Atenciones</div>} />
         </Route>
 
