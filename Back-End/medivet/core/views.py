@@ -71,7 +71,7 @@ class FichaClinicaViewSet(viewsets.ModelViewSet):
     serializer_class = FichaClinicaSerializer
     permission_classes = [permissions.IsAuthenticated, IsVeterinarioOrReadOnly]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['paciente', 'veterinario']
+    filterset_fields = ['paciente', 'veterinario', 'cita']
 
     def get_queryset(self):
         user = self.request.user

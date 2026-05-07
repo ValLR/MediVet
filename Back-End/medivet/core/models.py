@@ -62,6 +62,7 @@ class Cita(models.Model):
 class FichaClinica(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, db_column='id_paciente', related_name='fichas')
     veterinario = models.ForeignKey(Usuario, on_delete=models.CASCADE, db_column='id_veterinario', related_name='fichas_creadas')
+    cita = models.OneToOneField(Cita, on_delete=models.CASCADE, db_column='id_cita', related_name='ficha', null=True, blank=True)
     fecha_atencion = models.DateTimeField(auto_now_add=True)
     diagnostico = models.TextField()
     tratamiento = models.TextField()

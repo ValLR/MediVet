@@ -47,7 +47,7 @@ const AdminLayout = () => {
         </header>
 
         {/* Dynamic Content */}
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-white p-6 md:p-12">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-white p-6 md:p-12 print:p-0 print:overflow-visible">
           <Outlet />
         </main>
       </div>

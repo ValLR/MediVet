@@ -24,7 +24,7 @@ const Sidebar = ({ userName, links, isMobileOpen, toggleMobile }) => {
       <aside 
         className={`${
           isMobileOpen ? 'translate-x-0' : '-translate-x-full'
-        } fixed md:relative md:translate-x-0 z-30 w-64 h-full bg-white flex flex-col transition-transform duration-300 shadow-xl`}
+        } fixed md:relative md:translate-x-0 z-30 w-64 h-full bg-white flex flex-col transition-transform duration-300 shadow-xl print:hidden`}
       >
         {/* Logo and User Info Area */}
         <div className="bg-[#9cd2c3] pb-6 rounded-br-[40px]">

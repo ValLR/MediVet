@@ -9,6 +9,8 @@ import DashboardUser from './views/DashboardUser';
 import PatientRegistration from './views/PatientRegistration';
 import ScheduleAppointment from './views/ScheduleAppointment';
 import AppointmentsHistory from './views/AppointmentsHistory';
+import ClinicalRecord from './views/ClinicalRecord';
+import PrescriptionView from './views/PrescriptionView';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="agenda" element={<ScheduleAppointment />} />
           <Route path="pacientes" element={<PatientRegistration />} />
           <Route path="historial" element={<AppointmentsHistory />} />
+          <Route path="atencion/:citaId" element={<ClinicalRecord />} />
+          <Route path="receta/:citaId" element={<PrescriptionView />} />
         </Route>
 
         {/* Rutas de Dueño (Usuario) */}
@@ -30,6 +34,7 @@ function App() {
           <Route index element={<DashboardUser />} />
           <Route path="agendar" element={<ScheduleAppointment />} />
           <Route path="historial" element={<AppointmentsHistory />} />
+          <Route path="receta/:citaId" element={<PrescriptionView />} />
         </Route>
       </Routes>
     </Router>

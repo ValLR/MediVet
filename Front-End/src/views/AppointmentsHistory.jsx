@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import api from '../services/api';
 
 const AppointmentsHistory = () => {
+  const navigate = useNavigate();
   const [role, setRole] = useState('');
   const [userName, setUserName] = useState('');
   const [appointments, setAppointments] = useState([]);
@@ -154,6 +156,7 @@ const AppointmentsHistory = () => {
                         <td className="py-4 px-4">
                           {isVet ? (
                             <button 
+                              onClick={() => navigate(`/dashboard-admin/atencion/${cita.id}`)}
                               className={`text-white font-semibold py-2 px-6 rounded-3xl transition-colors text-sm w-[160px]
                                 ${cita.estado === 'Programada' ? 'bg-[#0f8f2b] hover:bg-[#0c7022]' : ''}
                                 ${isCompletada ? 'bg-[#3b82f6] hover:bg-[#2563eb]' : ''}
@@ -165,6 +168,7 @@ const AppointmentsHistory = () => {
                             </button>
                           ) : (
                             <button 
+                              onClick={() => navigate(`/dashboard-user/receta/${cita.id}`)}
                               className={`text-white font-semibold py-2 px-6 rounded-3xl transition-colors text-sm w-[160px]
                                 ${isCompletada ? 'bg-[#0f8f2b] hover:bg-[#0c7022]' : 'bg-gray-400 cursor-not-allowed opacity-50'}
                               `}
