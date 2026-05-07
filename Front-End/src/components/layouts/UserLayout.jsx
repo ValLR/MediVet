@@ -20,7 +20,7 @@ const UserLayout = () => {
   const userLinks = [
     { name: 'Inicio', path: '/dashboard-user', exact: true, icon: Home },
     { name: 'Agendar Cita', path: '/dashboard-user/agendar', exact: false, icon: Calendar },
-    { name: 'Mis Recetas', path: '/dashboard-user/recetas', exact: false, icon: FileText },
+    { name: 'Historial de Citas', path: '/dashboard-user/historial', exact: false, icon: FileText },
   ];
 
   return (
