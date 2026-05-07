@@ -4,12 +4,18 @@ import { toast } from 'react-hot-toast';
 import { Loader2 } from 'lucide-react';
 import api from '../services/api';
 
+/**
+ * Vista de Registro de Pacientes (Mascotas) y Dueños.
+ * Esta pantalla permite buscar un dueño por RUT o crear uno nuevo, 
+ * y luego registrar una mascota asociada a dicho dueño.
+ */
 const PatientRegistration = () => {
   const navigate = useNavigate();
+  // Estados para controlar los indicadores de carga (loading)
   const [isLoading, setIsLoading] = useState(false);
   const [isSearchingOwner, setIsSearchingOwner] = useState(false);
   
-  // Estado para el dueño
+  // ownerData: Almacena la información del dueño (existente o nuevo)
   const [ownerData, setOwnerData] = useState({
     id: null,
     rut: '',
@@ -19,7 +25,7 @@ const PatientRegistration = () => {
     direccion: ''
   });
 
-  // Estado para la mascota
+  // petData: Almacena los datos de la mascota que se va a registrar
   const [petData, setPetData] = useState({
     nombre: '',
     especie: '',

@@ -3,18 +3,28 @@ import { useNavigate } from 'react-router-dom';
 import { Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import api from '../services/api';
 
+/**
+ * Vista de Historial de Citas.
+ * Muestra una tabla con todas las citas registradas en el sistema.
+ * Es una vista compartida: 
+ * - Los Veterinarios ven quién es el dueño de la mascota.
+ * - Los Dueños ven qué veterinario atenderá a su mascota.
+ * Incluye paginación para manejar grandes volúmenes de datos.
+ */
 const AppointmentsHistory = () => {
   const navigate = useNavigate();
+  // Estados para identificar al usuario y sus citas
   const [role, setRole] = useState('');
   const [userName, setUserName] = useState('');
   const [appointments, setAppointments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
-  // Paginación
+  // Estados para controlar la paginación de la tabla
   const [page, setPage] = useState(1);
   const [hasNext, setHasNext] = useState(false);
   const [hasPrev, setHasPrev] = useState(false);
 
+  // Hook inicial para cargar los datos del usuario desde el almacenamiento local
   useEffect(() => {
     const userStr = localStorage.getItem('user');
     if (userStr) {

@@ -4,25 +4,36 @@ import { Loader2, X, Plus } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import api from '../services/api';
 
+/**
+ * Componente ClinicalRecord: Ficha Clínica interactiva.
+ * Permite al veterinario visualizar los datos del paciente y la cita actual,
+ * ingresar un diagnóstico, redactar el tratamiento y recetar múltiples medicamentos
+ * en una interfaz dinámica antes de generar la receta final.
+ */
 const ClinicalRecord = () => {
+  // Extraemos el ID de la cita desde la URL
   const { citaId } = useParams();
   const navigate = useNavigate();
   
+  // Estados para manejar el progreso de carga y guardado
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  
+  // Datos principales obtenidos del backend
   const [cita, setCita] = useState(null);
   const [fichaId, setFichaId] = useState(null);
   const [recetaId, setRecetaId] = useState(null);
 
-  // Form states
+  // Estados del formulario médico
   const [diagnostico, setDiagnostico] = useState('');
   const [tratamiento, setTratamiento] = useState('');
   
-  // Prescriptions
+  // Manejo dinámico de la lista de prescripciones (Medicamentos)
   const [medicamentosList, setMedicamentosList] = useState([]);
   const [medInput, setMedInput] = useState('');
   const [indInput, setIndInput] = useState('');
 
+  // Hook que se ejecuta al montar el componente para traer toda la información
   useEffect(() => {
     const fetchData = async () => {
       try {

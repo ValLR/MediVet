@@ -8,9 +8,14 @@ from .serializers import (
     CustomTokenObtainPairSerializer
 )
 
+# Vista para el inicio de sesión personalizado.
+# Devuelve el token JWT junto con información adicional del perfil del usuario (rol, nombre).
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
+# Permiso personalizado: IsVeterinarioOrReadOnly.
+# Permite lectura (GET) a cualquier usuario autenticado, 
+# pero restringe la escritura (POST, PUT, DELETE) solo a usuarios con rol 'Veterinario'.
 class IsVeterinarioOrReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in permissions.SAFE_METHODS:

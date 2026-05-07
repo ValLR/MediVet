@@ -5,10 +5,17 @@ import { toast } from 'react-hot-toast';
 import api from '../services/api';
 import medivetLogo from '../assets/medivetlogobig.png';
 
+/**
+ * Vista de Receta Médica (PrescriptionView).
+ * Esta pantalla genera un documento imprimible con los datos de la atención médica.
+ * Utiliza clases CSS especiales (print:hidden) para ocultar elementos durante la impresión.
+ * Incluye una "firma virtual" generada automáticamente con las iniciales del veterinario.
+ */
 const PrescriptionView = () => {
   const { citaId } = useParams();
   const navigate = useNavigate();
   
+  // Estados para manejar los datos que componen la receta
   const [isLoading, setIsLoading] = useState(true);
   const [cita, setCita] = useState(null);
   const [ficha, setFicha] = useState(null);

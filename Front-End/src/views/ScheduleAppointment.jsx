@@ -4,24 +4,32 @@ import { toast } from 'react-hot-toast';
 import { Loader2, Search } from 'lucide-react';
 import api from '../services/api';
 
+/**
+ * Vista de Agendamiento de Citas.
+ * Maneja dos flujos: 
+ * 1. Dueño: Solo puede agendar para sus propias mascotas.
+ * 2. Admin/Veterinario: Debe buscar un dueño (autocomplete) y luego seleccionar una de sus mascotas.
+ * Incluye validación de disponibilidad para asegurar que el veterinario no tenga otra cita al mismo tiempo.
+ */
 const ScheduleAppointment = () => {
   const navigate = useNavigate();
+  // role: Almacena el rol del usuario logueado (Dueno, Veterinario, Administrativo)
   const [role, setRole] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
 
-  // Opciones de formulario
+  // Opciones cargadas dinámicamente desde el backend
   const [vets, setVets] = useState([]);
   const [pets, setPets] = useState([]);
   
-  // Estado del Autocomplete de Dueños
+  // Estado del buscador predictivo (Autocomplete) para Dueños
   const [ownerSearchQuery, setOwnerSearchQuery] = useState('');
   const [ownerSearchResults, setOwnerSearchResults] = useState([]);
   const [showOwnerDropdown, setShowOwnerDropdown] = useState(false);
   const [selectedOwner, setSelectedOwner] = useState(null);
   const searchRef = useRef(null);
 
-  // Estado del formulario
+  // Datos capturados por el formulario de agendamiento
   const [formData, setFormData] = useState({
     mascota_id: '',
     veterinario_id: '',
